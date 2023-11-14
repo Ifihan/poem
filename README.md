@@ -1,6 +1,8 @@
 # Poem Generator
 
-A poem generator that generates poem using the [MakerSuite](https://makersuite.google.com/app/home) API.
+A poem generator that generates poems using the [MakerSuite](https://makersuite.google.com/app/home) API.
+
+[![Video Thumbnail](https://img.youtube.com/vi/uYCo7GPN8S0/maxresdefault.jpg)](https://youtu.be/uYCo7GPN8S0)
 
 ## Getting Started
 
@@ -44,9 +46,8 @@ flask run
 
 ## To do
 
-- Execute dark mode properly.
 - Ensure that it's only poems it'll generate.
-- Grab the poem "idea" and make it the topic.
+- Grab the poem "idea" and make it the topic (30% done).
 
 ## Any issues?
 
