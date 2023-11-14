@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poem Result</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../static/style.css">
 
 
     <style>
@@ -17,7 +17,9 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
-
+        .header {
+            color: black;
+        }
 
         #poem {
             text-align: left;
@@ -63,7 +65,7 @@
 
 <body>
     <div id="container">
-        <h1>Your Generated Poem - <span id="displayPrompt"></span></h1>
+        <h1 class="header">Your Generated Poem - <span id="displayPrompt"></span></h1>
         <div id="poem">{{ poem }}</div>
         <div class="button-container">
             <button id="generate-btn" onclick="window.location.href='/'">Generate Another Poem</button>
