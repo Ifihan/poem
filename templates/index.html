@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poem Generator</title>
     <style>
+        :root {
+            --background-color: #f9f9f9;
+            --text-color: #333;
+            --container-bg-color: white;
+            --button-bg-color: #5cb85c;
+            --button-hover-bg-color: #4cae4c;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
+            padding-top: 60px;
+            background-color: var(--background-color);
+            color: var(--text-color);
             text-align: center;
         }
+
         #container {
-            background-color: white;
+            background-color: var(--container-bg-color);
             max-width: 600px;
-            margin: 40px auto;
+            margin: 0 auto;
             padding: 30px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
-        input[type="text"], button {
+
+        input[type="text"],
+        button {
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ddd;
@@ -28,48 +41,81 @@
             width: 90%;
             box-sizing: border-box;
         }
+
         button {
-            background-color: #5cb85c;
+            background-color: var(--button-bg-color);
             color: white;
             border: none;
             cursor: pointer;
             font-size: 16px;
         }
+
         button:hover {
-            background-color: #4cae4c;
+            background-color: var(--button-hover-bg-color);
         }
-        #poem-container {
-            text-align: left;
-            white-space: pre-wrap; /* Keeps the format of the poem */
-            margin-top: 20px;
-            color: #333;
-        }
+
+      body {
+      transition: background-color 0.3s ease;
+    }
+
+    .dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .heading{
+        color: #333;
+    }
+
+    .main-container{
+        height: 90vh;
+        position: relative;
+    }
+
+    .btn{
+        font-size: 20px;
+        padding: 20px 30px;
+        width: 200px;
+        position: absolute;
+        bottom: 50px;
+        right: 40px;
+    }
+
+
     </style>
 </head>
+
 <body>
+   <section class="main-container">
     <div id="container">
-        <h1>Poem Generator</h1>
-        <input type="text" id="prompt-input" placeholder="Enter your prompt here...">
-        <button id="generate-btn">Generate Poem</button>
-        <div id="poem-container"></div>
+        <h1 class="heading">Poem Generator</h1>
+        <form action="/generate-poem" method="POST">
+            <input type="text" name="prompt" id="prompt-input" required placeholder="Write a poem about...">
+            <button id="generate-btn">Generate Poem</button>
+        </form>
     </div>
 
-    <script>
-        document.getElementById('generate-btn').addEventListener('click', function() {
-            var prompt = document.getElementById('prompt-input').value;
-            fetch('/generate-poem', { // Replace 'API_ENDPOINT' with the actual endpoint
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ prompt: prompt })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('poem-container').innerText = data.poem;
-            })
-            .catch(error => console.error('Error:', error));
+    <button id="toggleButton" class="btn">
+     <ion-icon name="sunny-outline"></ion-icon>
+     <ion-icon name="moon-outline"></ion-icon>
+    </button>
+   </section>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const body = document.body;
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', function () {
+            body.classList.toggle('dark-mode');
         });
-    </script>
+    });
+    
+</script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   
 </body>
+
 </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poem Result</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        #container {
+            background-color: var(--container-bg-color);
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        
+        #poem {
+            text-align: left;
+            white-space: pre-wrap;
+            margin-top: 20px;
+            color: #333;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #generate-btn {
+            background-color: #5cb85c;
+            color: white;
+        }
+        #generate-btn:hover {
+            background-color: #4cae4c;
+        }
+        #copy-btn {
+            background-color: #87CEEB;
+            color: white;
+        }
+        #copy-btn:hover {
+            background-color: #7EC0EE;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Your Generated Poem</h1>
+        <div id="poem">{{ poem }}</div>
+        <div class="button-container">
+            <button id="generate-btn" onclick="window.location.href='/'">Generate Another Poem</button>
+            <button id="copy-btn" class="copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const poemText = document.getElementById('poem').innerText;
+            navigator.clipboard.writeText(poemText).then(function() {
+                alert('Poem copied to clipboard!');
+            }).catch(function(error) {
+                alert('Error copying poem: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>
