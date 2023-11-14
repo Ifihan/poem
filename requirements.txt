@@ -5,7 +5,7 @@ charset-normalizer==3.3.2
 click==8.1.7
 Flask==3.0.0
 google-ai-generativelanguage==0.3.3
-google-api-core==2.13.0
+google-api-core==2.14.0
 google-auth==2.23.4
 google-generativeai==0.2.2
 googleapis-common-protos==1.61.0
@@ -19,6 +19,7 @@ proto-plus==1.22.3
 protobuf==4.25.0
 pyasn1==0.5.0
 pyasn1-modules==0.3.0
+python-dotenv==1.0.0
 requests==2.31.0
 rsa==4.9
 tqdm==4.66.1
