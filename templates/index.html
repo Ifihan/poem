@@ -7,28 +7,6 @@
     <link rel="stylesheet" href="../static/style.css">
     <title>Poem Generator</title>
     <style>
-        /* :root {
-            --background-color: #f9f9f9;
-            --text-color: #333;
-            --container-bg-color: white;
-            --button-bg-color: #5cb85c;
-            --button-hover-bg-color: #4cae4c;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding-top: 60px;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            text-align: center;
-        }
-
-
-        .dark-mode {
-            background-color: #333;
-            color: #fff;
-        } */
         #container {
             background-color: var(--container-bg-color);
             max-width: 600px;
@@ -89,7 +67,7 @@
     <section class="main-container">
         <div id="container">
             <h1 class="heading">Poem Generator</h1>
-            <form action="/generate-poem" method="POST" onsubmit="saveInputToLocalStorage()">
+            <form action="/generate-poem" method="POST" onsubmit="saveInputToLocalStorage()" autoComplete="off">
                 <input type="text" name="prompt" id="prompt-input" required placeholder="Write a poem about...">
                 <button id="generate-btn">Generate Poem</button>
             </form>

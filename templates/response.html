@@ -17,9 +17,7 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
-        .header {
-            color: black;
-        }
+
 
         #poem {
             text-align: left;
@@ -59,28 +57,68 @@
         #copy-btn:hover {
             background-color: #7EC0EE;
         }
+
+        .main-container {
+            height: 90vh;
+            position: relative;
+        }
+
+        .btn {
+            background-color: var(--button-bg-color);
+            border: none;
+            font-size: 20px;
+            padding: 20px 30px;
+            width: 100px;
+            position: absolute;
+            bottom: 50px;
+            right: 40px;
+        }
+
+        .heading{
+            color: #333;
+        }
     </style>
 </head>
 
 
 <body>
+ <section class="main-container">
     <div id="container">
-        <h1 class="header">Your Generated Poem - <span id="displayPrompt"></span></h1>
+        <h1 class="heading">Your Generated Poem - <span id="displayPrompt"></span></h1>
         <div id="poem">{{ poem }}</div>
         <div class="button-container">
             <button id="generate-btn" onclick="window.location.href='/'">Generate Another Poem</button>
             <button id="copy-btn" class="copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
         </div>
+    
+        <button id="toggleButton" class="btn">
+            <ion-icon></ion-icon>
+        </button>
     </div>
+ </section>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const body = document.body;
+            const toggleButton = document.getElementById('toggleButton');
+            const iconContainer = toggleButton.querySelector('ion-icon');
+
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
                 body.classList.add(savedTheme);
             }
 
+            const iconName = savedTheme === 'dark-mode' ? 'moon-outline' : 'sunny-outline';
+            iconContainer.setAttribute('name', iconName);
+
+
+            toggleButton.addEventListener('click', function () {
+                body.classList.toggle('dark-mode');
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+                localStorage.setItem('theme', currentTheme);
+                const iconName = currentTheme === 'dark-mode' ? 'moon-outline' : 'sunny-outline';
+                iconContainer.setAttribute('name', iconName);
+            });
 
             const storedPrompt = localStorage.getItem('promptValue');
             const displayPrompt = document.getElementById('displayPrompt');
@@ -98,6 +136,9 @@
             });
         }
     </script>
+
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
 
 </body>
