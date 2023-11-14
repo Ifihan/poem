@@ -14,3 +14,9 @@ body {
     color: var(--text-color);
     text-align: center;
 }
+
+
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}

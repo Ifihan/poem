@@ -4,25 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
     <title>Poem Generator</title>
     <style>
-        :root {
-            --background-color: #f9f9f9;
-            --text-color: #333;
-            --container-bg-color: white;
-            --button-bg-color: #5cb85c;
-            --button-hover-bg-color: #4cae4c;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding-top: 60px;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            text-align: center;
-        }
-
         #container {
             background-color: var(--container-bg-color);
             max-width: 600px;
@@ -54,68 +38,89 @@
             background-color: var(--button-hover-bg-color);
         }
 
-      body {
-      transition: background-color 0.3s ease;
-    }
-
-    .dark-mode {
-      background-color: #333;
-      color: #fff;
-    }
-
-    .heading{
-        color: #333;
-    }
-
-    .main-container{
-        height: 90vh;
-        position: relative;
-    }
-
-    .btn{
-        font-size: 20px;
-        padding: 20px 30px;
-        width: 200px;
-        position: absolute;
-        bottom: 50px;
-        right: 40px;
-    }
+        body {
+            transition: background-color 0.3s ease;
+        }
 
 
+        .heading {
+            color: #333;
+        }
+
+        .main-container {
+            height: 90vh;
+            position: relative;
+        }
+
+        .btn {
+            font-size: 20px;
+            padding: 20px 30px;
+            width: 100px;
+            position: absolute;
+            bottom: 50px;
+            right: 40px;
+        }
     </style>
 </head>
 
 <body>
-   <section class="main-container">
-    <div id="container">
-        <h1 class="heading">Poem Generator</h1>
-        <form action="/generate-poem" method="POST">
-            <input type="text" name="prompt" id="prompt-input" required placeholder="Write a poem about...">
-            <button id="generate-btn">Generate Poem</button>
-        </form>
-    </div>
+    <section class="main-container">
+        <div id="container">
+            <h1 class="heading">Poem Generator</h1>
+            <form action="/generate-poem" method="POST" onsubmit="saveInputToLocalStorage()">
+                <input type="text" name="prompt" id="prompt-input" required placeholder="Write a poem about...">
+                <button id="generate-btn">Generate Poem</button>
+            </form>
+        </div>
 
-    <button id="toggleButton" class="btn">
-     <ion-icon name="sunny-outline"></ion-icon>
-     <ion-icon name="moon-outline"></ion-icon>
-    </button>
-   </section>
+        <button id="toggleButton" class="btn">
+            <ion-icon></ion-icon>
+        </button>
+    </section>
 
-  <script>
-    
-    document.addEventListener('DOMContentLoaded', function () {
-        const body = document.body;
-        const toggleButton = document.getElementById('toggleButton');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const body = document.body;
+            const toggleButton = document.getElementById('toggleButton');
+            const iconContainer = toggleButton.querySelector('ion-icon');
 
-        toggleButton.addEventListener('click', function () {
-            body.classList.toggle('dark-mode');
+            // Check the initial theme from localStorage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.classList.add(savedTheme);
+                // Set the initial icon based on the saved theme
+                const iconName = savedTheme === 'dark-mode' ? 'moon-outline' : 'sunny-outline';
+                iconContainer.setAttribute('name', iconName);
+            }
+
+            toggleButton.addEventListener('click', function () {
+                // Toggle the dark mode class on the body
+                body.classList.toggle('dark-mode');
+
+                // Get the current theme after toggling
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+
+                // Save the current theme to localStorage
+                localStorage.setItem('theme', currentTheme);
+
+                // Update the icon based on the current theme
+                const iconName = currentTheme === 'dark-mode' ? 'moon-outline' : 'sunny-outline';
+                iconContainer.setAttribute('name', iconName);
+            });
         });
-    });
-    
-</script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-   
+
+
+        function saveInputToLocalStorage() {
+            const promptInput = document.getElementById('prompt-input');
+            const inputValue = promptInput.value;
+
+            localStorage.setItem('promptValue', inputValue);
+        }
+    </script>
+
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
 </body>
 
 </html>
