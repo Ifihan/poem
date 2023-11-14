@@ -35,7 +35,8 @@ pip install -r requirements.txt
 7. Run the application
 
 ```bash
-set FLASK_APP=app.py
+set FLASK_APP=app.py # Windows
+export FLASK_APP=app.py # Linux/ Mac
 flask run
 ```
 
@@ -43,7 +44,7 @@ flask run
 
 ## To do
 
-- Execute dark mode.
+- Execute dark mode properly.
 - Ensure that it's only poems it'll generate.
 - Grab the poem "idea" and make it the topic.
 
