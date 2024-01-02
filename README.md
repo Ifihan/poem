@@ -2,7 +2,7 @@
 
 A poem generator that generates poems using the [MakerSuite](https://makersuite.google.com/app/home) API.
 
-[![Video Thumbnail](https://img.youtube.com/vi/uYCo7GPN8S0/maxresdefault.jpg)](https://youtu.be/uYCo7GPN8S0)
+https://github.com/Ifihan/poem/assets/49107589/2332ec16-92bc-4e08-bd95-fb74e0803ad4
 
 ## Getting Started
 
